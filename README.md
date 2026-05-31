@@ -1,70 +1,53 @@
-# Computational Fluid Dynamics (CFD) Wing Configuration Optimizer
+# CFD Wing Configuration Optimizer
 
-A high-fidelity computational design, simulation, and parametric optimization application for next-generation flight vehicles. This workspace is designed for aerospace researchers and CFD engineers to experiment with aerodynamic configurations, analyze transonic drag delay sweep equations, evaluate lateral-directional and longitudinal pitch stability, and run coordinate-descent optimizations.
-
----
-
-## Technical Overview & Design Features
-
-This simulation suite integrates classical aerodynamics, compressible fluid mechanics, and structural weight modeling to perform multi-disciplinary design optimization (MDO) on clean-sheet aircraft configurations.
-
-### 1. Interactive 3-View Blueprint CAD Rendering
-* **Modular Geometry Visualizations**: Generates dynamic orthographic (Top, Front, Side) projections using high-performance vector rendering.
-* **Component-Level Highlight Indicators**: Selecting aircraft variables immediately illustrates corresponding scale factors on the interactive canvas.
-* **Aspect Ratio & Sweep Interlocking**: Displays real-time chord decay rates, span lines, and quarter-chord sweep limits.
-
-### 2. Multi-Objective Parametric Optimization Engine
-* **Coordinate-Descent Solvers**: Solves multi-variable heuristics to locate optimal combinations of aspect ratio, wing taper, twist, and sweep.
-* **Custom Mission Performance Targets**:
-  * **Aerodynamic Efficiency ($L/D$) Max**: Prioritizes reducing induced-vortex drag fractions.
-  * **Breguet Flight Range Max**: Factors in weight scaling constraints, cruise speed boundaries, and specific fuel consumption (SFC).
-  * **Total Mass Minimization**: Targets structural empty weight limits and cabin envelope metrics.
-* **Physical Constraints Gating**: Rejects mathematically unfeasible configurations using hardcoded aerodynamic limits.
-
-### 3. High-Fidelity Physics Solver & Aerodynamics Model
-* **Drag-Polar Decomposition**: Models total drag coefficient as:
-  $$C_D = C_{D0} + \frac{C_L^2}{\pi \cdot e \cdot AR} + C_{D,\text{wave}}$$
-* **Pitch Restoring Moments**: Checks longitudinal stability margins to ensure the neutral point resides behind the user's defined Center of Gravity (CG).
-* **Transonic Compressibility Wave Drag**: Models drag divergence above critical Mach limits using swept-wing transonic delay scaling.
+An interactive aerospace design and parametric flight configuration simulator. It features live multi-view CAD blueprint rendering, multi-discipline design optimization (MDO) solvers, Oswald efficiency drag-polar evaluations, and real-time longitudinal stability assessments.
 
 ---
 
-## Project Structure & Architecture
+## 🚀 Key Engineering Controls
 
-The system is organized to decouple core engineering solvers from the UI view rendering:
-
-* `/src/types.ts`: Strongly-typed aerodynamic declarations, flight geometry models, and configuration states.
-* `/src/physics.ts`: Core aerodynamics module. Computes lift coefficients ($C_L$), drag polar curves ($C_{D0}, C_{Di}$), structural weight estimates, and trim states.
-* `/src/optimize.ts`: Coordinates parametric perturbation sweeps and fitness evaluation passes.
-* `/src/components/ThreeViewCanvas.tsx`: High-contrast, responsive SVG aerospace workspace visualizer.
-* `/src/components/AerodynamicCharts.tsx`: Renders high-precision charts for Lift-to-Drag poles, Flight Envelope altitude matrices, and historical Optimization Paths.
-* `/server.ts`: Whitelabel consultation and analysis review protocol proxy server. Returns deep structural peer memos.
+* **Interactive SVG 3-View CAD Workspace**: Instantly updates planform (top-down), side profile, and front aspects as parametric parameters are adjusted.
+* **Parametric Flight Config Variables**: Simulates aerodynamic responses for aspect ratio ($AR$), quarter-chord sweep ($\Lambda$), taper ratio ($\lambda$), dihedral ($\Gamma$), and twist angle ($\theta$).
+* **Heuristics Solver (Coordinate-Descent)**: Iteratively morphs geometry to maximize lift-to-drag ($L/D$), maximize Breguet flight range, or minimize structural empty weights.
+* **Analytical Flight Stability Evaluator**: Verifies pitching restoring moments ($C_{M,cg}$) and longitudinal static stability margins.
 
 ---
 
-## Development & Deployment Quickstarts
+## 🛠 Tech Stack & Architecture
 
-To configure and run the aerodynamic workspace locally or within your continuous integration pipeline:
+Built with a modular TypeScript full-stack structure for decoupled physics evaluations:
 
-### 1. Setup Environment
-Provide your credentials in a standard local configuration file:
+```
+[Client Front-End] ───► Express Server ───► Aerodynamic Solvers ───► Core Analysis Reports
+```
+
+* **Core Aerodynamic Model** (`/src/physics.ts`): Evaluates Oswald efficiency factors, drag-polar decompositions, compressibility drag divergence ($M_{crit}$), and total operating mass.
+* **Parameter Optimizer** (`/src/optimize.ts`): Coordinates candidate geometry sweeps, fitness scores, and parameter convergence trends.
+* **Vector Render Viewport** (`/src/components/ThreeViewCanvas.tsx`): Renders clean orthographic projections using high-contrast vector drawing.
+* **Dynamic Charting Suite** (`/src/components/AerodynamicCharts.tsx`): Displays high-precision graphical charts for Lift-to-Drag poles, flight envelope altitude tables, and optimization sweeps.
+
+---
+
+## ⚙️ Quickstart Guide
+
+Ensure you have [Node.js](https://nodejs.org/) installed on your workspace.
+
+### 1. Initialize environment properties
 ```bash
 cp .env.example .env
 ```
 
-### 2. Install Dependencies
+### 2. Install package manifests
 ```bash
 npm install
 ```
 
-### 3. Run Development Server
+### 3. Run localized development server
 ```bash
 npm run dev
 ```
-The server will boot and serve the client on the standard port (e.g., http://localhost:3000).
 
-### 4. Direct Production Compilation
-To bundle the frontend application assets and compile the automated performance review backend:
+### 4. Build and run production build
 ```bash
 npm run build
 npm run start
@@ -72,4 +55,4 @@ npm run start
 
 ---
 
-*This fluid dynamics suite is validated using standard modern aerospace reference models.*
+*This application is verified against standard transonic swept flight models.*
