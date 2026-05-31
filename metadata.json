@@ -1,0 +1,6 @@
+{
+  "name": "Next-Generation Aircraft Configuration Optimization for Enhanced Aerodynamic Performance",
+  "description": "An interactive computational fluid dynamics and aerospace design simulator. Features visual multi-view CAD blueprints rendering, parametric wing geometry optimization solvers, Oswald efficiency drag-polar curves calculation, and real-time flight stability diagnostics assessments.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
