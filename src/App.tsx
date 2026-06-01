@@ -100,7 +100,7 @@ export default function App() {
     university: 'Global Institute of Space & Aeronautical Technology',
     internshipPeriod: 'Summer Semester 2026',
     mentorName: 'Prof. J. Vance, Senior Aerodynamicist',
-    department: 'Computational Fluid Dynamics Research Lab',
+    department: 'Aerodynamic Design & Flight Optimization Lab',
   });
 
   // Toggle report prints
@@ -225,7 +225,7 @@ export default function App() {
         setAiReport('Failed to compile engineering diagnostics files from the automated evaluation server.');
       }
     } catch {
-      setAiReport('Error connecting to the CFD analysis consultation server. Verify pipeline connection states.');
+      setAiReport('Error connecting to the aerodynamic analysis consultation server. Verify pipeline connection states.');
     } finally {
       setIsAiLoading(false);
     }
@@ -238,7 +238,7 @@ export default function App() {
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2">
             <span className="p-1 px-1.5 rounded bg-blue-650 font-mono text-[10px] font-bold text-white tracking-widest">
-              AEROSPACE CAD/CFD
+              AEROSPACE CAD/AERO
             </span>
             <span className="text-[11px] font-mono text-slate-500 border-l border-slate-800 pl-2">
               VERSION 4.2.1-OPTIMIZER
